@@ -1,13 +1,15 @@
+type BasicResource = "a" | "b" | "c" | "d" | "e";
+type SpecialResource = "x" | "y" | "z";
 type Resource = "a" | "b" | "c" | "d" | "e" | "x" | "y" | "z";
 
 interface CardRulesProps {
   cost?: Resource[];
-  cardType?: Resource;
+  cardType?: BasicResource;
   trash?: Resource;
-  reward?: Resource[];
-  production?: Resource[];
+  reward?: SpecialResource[];
+  production?: BasicResource[];
   points?: number;
-  pointResource?: Resource[];
+  pointResource?: BasicResource[];
 }
 
-export { Resource, CardRulesProps };
+export { BasicResource, SpecialResource, Resource, CardRulesProps };

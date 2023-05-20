@@ -1,13 +1,18 @@
-import { CardRulesProps, Resource } from "./typesAndInterfaces";
+import {
+  BasicResource,
+  CardRulesProps,
+  Resource,
+  SpecialResource,
+} from "./typesAndInterfaces";
 
 export class CardRules {
   cost: Resource[];
-  cardType: Resource;
+  cardType: BasicResource;
   trash: Resource;
-  reward: Resource[];
-  production: Resource[];
+  reward: SpecialResource[];
+  production: BasicResource[];
   points: number;
-  pointResource: Resource[];
+  pointResource: BasicResource[];
   active: boolean;
 
   constructor(props: CardRulesProps) {

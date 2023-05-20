@@ -14,18 +14,17 @@ describe("Tableau rules test", () => {
     pointResource: ["b"],
   });
 
-  tab2.bCards = 1;
-  tab2.xResources = 1;
-  tab2.bProduction = 1;
-  tab2.score = 1;
-  tab2.bScore = 1;
+  tab2.cards["b"] = 1;
+  tab2.specialResources["x"] = 1;
+  tab2.production["b"] = 1;
+  tab2.resourceScore["b"] = 1;
 
   tab1.completeCard(card1);
 
   it("complete card works", () => expect(tab1).toEqual(tab2));
 
   it("sub score works", () =>
-    expect(tab1.subScore()).toEqual([1, 0, 1, 0, 0, 0, 1, 0]));
+    expect(tab1.subScore()).toEqual([0, 1, 0, 0, 0, 1, 0, 0]));
 
-  it("final score works", () => expect(tab1.finalScore()).toBe(3));
+  it("final score works", () => expect(tab1.finalScore()).toBe(2));
 });
