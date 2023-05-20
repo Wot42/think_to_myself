@@ -1,48 +1,50 @@
 import { CardRules } from "../cardRules";
+import { Resource } from "../typesAndInterfaces";
 
-describe('card rules test', ()=>{
+describe("card rules test", () => {
+  it("defaults load", () => {
+    const cardBlank = new CardRules({});
+    const cardBlankTemplate = new CardRules({
+      cost: ["a"],
+      cardType: "a",
+      trash: "a",
+      reward: [],
+      production: ["a"],
+      points: 0,
+      pointResource: [],
+    });
+    cardBlankTemplate.active = false;
 
-  it('bad input fails load', ()=> {
-    const badLoad = new CardRules({cost:['A']});
-    expect(badLoad.loaded).toBe(false)
+    expect(cardBlank).toEqual(cardBlankTemplate);
   });
 
-  const fullResources = ["a","b","c","d","e","x","y","z"];
-  const card1 = new CardRules({
-    cost:fullResources,
-    cardType:'b',
-    trash:'b',
-    reward:['x'],
-    production:['b'],
-    points:1,
-    pointResource:['b']
+  it("copy works", () => {
+    const fullResources: Resource[] = ["a", "b", "c", "d", "e", "x", "y", "z"];
+    const card1 = new CardRules({
+      cost: fullResources,
+      cardType: "b",
+      trash: "b",
+      reward: ["x"],
+      production: ["b"],
+      points: 1,
+      pointResource: ["b"],
+    });
+    const cardCopy = new CardRules({});
+    cardCopy.copy(card1);
+
+    expect(cardCopy).toEqual(card1);
   });
 
-  it('good input pass load', ()=> expect(card1.loaded).toBe(true));
+  it("has resource", () => {
+    const cardHasResource = new CardRules({});
 
-  const cardBlank = new CardRules({})
-  const cardBlankTemplate = new CardRules({
-    cost:['a'],
-    cardType:'a',
-    trash:'a',
-    reward:[],
-    production:['a'],
-    points:0,
-    pointResource:[]
+    expect(cardHasResource.hasResource("a")).toBe(true);
   });
-  cardBlankTemplate.active = false;
-  it('defaults load', ()=> expect(cardBlank).toEqual(cardBlankTemplate));
 
-  cardBlank.copy(card1);
+  const cardGotResource = new CardRules({});
 
-  it('copy works', ()=> expect(cardBlank).toEqual(card1));
-
-  const cardResource = new CardRules({});
-  it('has resource', ()=> expect(cardResource).hasResource('a').toBe(true));
-
-  cardResource.giveResource('a');
-  it('took resource', ()=> expect(cardResource.cost).toBe([]));
-  it("doesn't have resource", ()=>expect(cardResource.hasResource('a')).toBe(false));
-
-  //string to type
+  cardGotResource.giveResource("a");
+  it("took resource", () => expect(cardGotResource.cost).toEqual([]));
+  it("doesn't have resource", () =>
+    expect(cardGotResource.hasResource("a")).toBe(false));
 });

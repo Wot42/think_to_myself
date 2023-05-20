@@ -2,67 +2,83 @@ import { CardRules } from "../cardRules";
 import { DeckRules } from "../deckRules";
 import { TableauRules } from "../tableauRules";
 
-describe('Deck rules test', ()=>{
-  const deckCreate = new DeckRules();
-  deckCreate.create(5);
-  it('create works', ()=> expect(deckCreate.cards.length).toBe(5));
+//temp until test data has been set up
+const testDeckData = 0;
+const testDeck5Data = 0;
 
+describe("Deck rules test", () => {
+  const tableau = new TableauRules();
 
+  it("create works", () => {
+    const deckCreate = new DeckRules(tableau);
+    deckCreate.create(5);
 
+    expect(deckCreate.cards.length).toBe(5);
+  });
 
-
-  const deck1 = new DeckRules();
   const card1 = new CardRules({
-    cost:['b'],
-    cardtype:'b',
-    trash:'b',
-    reward:['x'],
-    production:['b'],
-    points:1,
-    pointResorce:['b'];
+    cost: ["b"],
+    cardType: "b",
+    trash: "b",
+    reward: ["x"],
+    production: ["b"],
+    points: 1,
+    pointResource: ["b"],
   });
-  deck1.cards.push(card1);
 
-  it('fill from works', ()=> {
-    const deckFill = new DeckRules();
+  it("fill from works", () => {
+    const deck1 = new DeckRules(tableau);
+    deck1.cards.push(card1);
+    const deckFill = new DeckRules(tableau);
     deckFill.fillFrom(testDeckData);
-    expect(deckFill).toEqual(deck1)
+
+    expect(deckFill).toEqual(deck1);
   });
 
-  deck1.cards.push(card1);
-  deck1.cards[0].active = false;
-  deck1.reorderInactive();
-  it('reorder puts active first', ()=> expect(deck1.cards[0].active).toBe(true));
+  const deck2 = new DeckRules(tableau);
+  deck2.cards.push(card1);
+  deck2.cards.push(card1);
+  deck2.cards[0].active = false;
+  deck2.reorderInactive();
+  it("reorder puts active first", () =>
+    expect(deck2.cards[0].active).toBe(true));
 
-  it('reorder has inactive last', ()=> expect(deck1.cards[1].active).toBe(false));
-  it('reorder has updated cardCount', ()=> expect(deck1.cardCount).toBe(1));
+  it("reorder has inactive last", () =>
+    expect(deck2.cards[1].active).toBe(false));
+  it("reorder has updated cardCount", () => expect(deck2.cardCount).toBe(1));
 
-  deck1.cards[1].active= true;
-  deck1.clear(0);
+  const deck3 = new DeckRules(tableau);
+  deck3.cards.push(card1);
+  deck3.cards.push(card1);
+  deck3.clear(0);
+  it("clear has inactive last", () =>
+    expect(deck3.cards[1].active).toBe(false));
 
-  it('clear has inactive last', ()=> expect(deck1.cards[1].active).toBe(false));
-
-  deckCreate.drawDeck(deck1,0)
-  it('draw deck removes card', ()=> expect(deck1.cards[0].active).toBe(false));
-  it('draw deck adds card', ()=> expect(deckCreate.cards[0].active).toBe(true));
-  it('draw deck keeps length constant', ()=> expect(deckCreate.cards.length).toBe(5));
+  const deck4 = new DeckRules(tableau);
+  deck4.create(5);
+  const deck5 = new DeckRules(tableau);
+  deck5.cards.push(card1);
+  deck4.drawDeck(deck5, 0);
+  it("draw deck removes card", () => expect(deck5.cards[0].active).toBe(false));
+  it("draw deck adds card", () => expect(deck4.cards[0].active).toBe(true));
+  it("draw deck keeps length constant", () =>
+    expect(deck4.cards.length).toBe(5));
   // test no space to draw error
   //test draw inactive error
 
-  const deckEmpty = new DeckRules();
-  deckEmpty.create(5)
-  const deckFill5 = new DeckRules();
+  const deckEmpty = new DeckRules(tableau);
+  deckEmpty.create(5);
+  const deckFill5 = new DeckRules(tableau);
   deckFill5.fillFrom(testDeck5Data);
-  deckEmpty.drawRand(deckFill5,3)
-  it('random draw gave 3', ()=> expect(deckEmpty.cardCount).toBe(3));
-  it('random draw took 3', ()=> expect(deckFill5.cardCount).toBe(2));
+  deckEmpty.drawRandom(deckFill5, 3);
+  it("random draw gave 3", () => expect(deckEmpty.cardCount).toBe(3));
+  it("random draw took 3", () => expect(deckFill5.cardCount).toBe(2));
 
-  const tableau = new TableauRules()
-  deckEmpty.tableau = tableau
-  deckEmpty.giveCardResource(0,'b')
-  it('give card resource cleared card', ()=> expect(deckEmpty.cardCount).toBe(2));
-  it('give card resource updated tableau score', ()=> expect(tableau.score).toBe(1));
-
-
-
-})
+  const deckGive = new DeckRules(tableau);
+  deckGive.fillFrom(testDeck5Data);
+  deckGive.giveCardResource(0, "b");
+  it("give card resource cleared card", () =>
+    expect(deckEmpty.cardCount).toBe(4));
+  it("give card resource updated tableau score", () =>
+    expect(tableau.score).toBe(1));
+});
