@@ -19,8 +19,6 @@ const TempTest = () => {
   deck1.cards.push(new CardRules(card1));
   const deck2 = new DeckRules(tableau);
   deck2.fillFrom(testDeck5Data);
-  deck2.cards[0].active = false;
-  deck2.reorderInactive();
   console.log("🚀 ~ file: TempTest.tsx:22 ~ TempTest ~ deck2:", deck2);
 
   // const testArray: CardRules[] = [];

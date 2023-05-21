@@ -13,7 +13,6 @@ export class CardRules {
   production: BasicResource[];
   points: number;
   pointResource: BasicResource[];
-  active: boolean;
 
   constructor(props: CardRulesProps) {
     this.cost = props.cost ? props.cost : ["a"];
@@ -23,7 +22,6 @@ export class CardRules {
     this.production = props.production ? props.production : ["a"];
     this.points = props.points ? props.points : 0;
     this.pointResource = props.pointResource ? props.pointResource : [];
-    this.active = props.cost && props.cost.length ? true : false;
   }
 
   copy(card: CardRules): void {
@@ -34,7 +32,6 @@ export class CardRules {
     this.production = card.production;
     this.points = card.points;
     this.pointResource = card.pointResource;
-    this.active = card.active;
   }
 
   hasResource(resource: Resource): boolean {

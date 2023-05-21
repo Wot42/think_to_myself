@@ -13,7 +13,6 @@ describe("card rules test", () => {
       points: 0,
       pointResource: [],
     });
-    cardBlankTemplate.active = false;
 
     expect(cardBlank).toEqual(cardBlankTemplate);
   });
