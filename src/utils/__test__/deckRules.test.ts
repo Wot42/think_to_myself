@@ -1,10 +1,8 @@
+import { testDeck5Data, testDeckData } from "../../data/deckData";
 import { CardRules } from "../cardRules";
 import { DeckRules } from "../deckRules";
 import { TableauRules } from "../tableauRules";
-
-//temp until test data has been set up
-const testDeckData = 0;
-const testDeck5Data = 0;
+import { CardRulesProps } from "../typesAndInterfaces";
 
 describe("Deck rules test", () => {
   const tableau = new TableauRules();
@@ -16,7 +14,7 @@ describe("Deck rules test", () => {
     expect(deckCreate.cards.length).toBe(5);
   });
 
-  const card1 = new CardRules({
+  const card1: CardRulesProps = {
     cost: ["b"],
     cardType: "b",
     trash: "b",
@@ -24,11 +22,12 @@ describe("Deck rules test", () => {
     production: ["b"],
     points: 1,
     pointResource: ["b"],
-  });
+  };
 
   it("fill from works", () => {
     const deck1 = new DeckRules(tableau);
-    deck1.cards.push(card1);
+    deck1.cards.push(new CardRules(card1));
+    deck1.cardCount = 1;
     const deckFill = new DeckRules(tableau);
     deckFill.fillFrom(testDeckData);
 
@@ -36,8 +35,8 @@ describe("Deck rules test", () => {
   });
 
   const deck2 = new DeckRules(tableau);
-  deck2.cards.push(card1);
-  deck2.cards.push(card1);
+  deck2.cards.push(new CardRules(card1));
+  deck2.cards.push(new CardRules(card1));
   deck2.cards[0].active = false;
   deck2.reorderInactive();
   it("reorder puts active first", () =>
@@ -48,8 +47,8 @@ describe("Deck rules test", () => {
   it("reorder has updated cardCount", () => expect(deck2.cardCount).toBe(1));
 
   const deck3 = new DeckRules(tableau);
-  deck3.cards.push(card1);
-  deck3.cards.push(card1);
+  deck3.cards.push(new CardRules(card1));
+  deck3.cards.push(new CardRules(card1));
   deck3.clear(0);
   it("clear has inactive last", () =>
     expect(deck3.cards[1].active).toBe(false));
@@ -57,7 +56,7 @@ describe("Deck rules test", () => {
   const deck4 = new DeckRules(tableau);
   deck4.create(5);
   const deck5 = new DeckRules(tableau);
-  deck5.cards.push(card1);
+  deck5.cards.push(new CardRules(card1));
   deck4.drawDeck(deck5, 0);
   it("draw deck removes card", () => expect(deck5.cards[0].active).toBe(false));
   it("draw deck adds card", () => expect(deck4.cards[0].active).toBe(true));
