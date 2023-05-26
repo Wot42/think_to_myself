@@ -1,36 +1,43 @@
 import React from "react";
-import { testDeck5Data } from "../data/deckData";
-import { CardRules, DeckRules, TableauRules } from "../utils";
+import Card from "./Card";
+import { CardRules } from "../utils";
 import { CardRulesProps } from "../utils/typesAndInterfaces";
 
 const TempTest = () => {
-  const tableau = new TableauRules();
-  const card1: CardRulesProps = {
-    cost: ["b"],
-    cardType: "b",
-    trash: "b",
+  var card3P: CardRulesProps = {
+    cost: ["a", "b", "c", "d", "e", "x", "y", "z"],
+    cardType: "a",
+    trash: "a",
     reward: ["x"],
     production: ["b"],
     points: 1,
     pointResource: ["b"],
   };
+  var card3 = new CardRules(card3P);
+  var card2P: CardRulesProps = {
+    cost: ["a", "b", "c", "d", "e", "x", "y", "z"],
+    cardType: "a",
+    trash: "b",
+    reward: [],
+    production: ["b"],
+    points: 1,
+    pointResource: [],
+  };
+  var card2 = new CardRules(card2P);
 
-  const deck1 = new DeckRules(tableau);
-  deck1.cards.push(new CardRules(card1));
-  const deck2 = new DeckRules(tableau);
-  deck2.fillFrom(testDeck5Data);
-  console.log("🚀 ~ file: TempTest.tsx:22 ~ TempTest ~ deck2:", deck2);
-
-  // const testArray: CardRules[] = [];
-  // testArray.push(new CardRules(card1));
-  // testArray.push(new CardRules(card1));
-  // console.log("🚀 ~ file: tempTest.jsx:30 ~ TempTest ~ testArray:", testArray);
-  // console.log(testArray[0] == testArray[1]);
-  // testArray.splice(0, 1);
-  // testArray[0].active = false;
-  // console.log("🚀 ~ file: tempTest.jsx:33 ~ TempTest ~ testArray:", testArray);
-
-  return <div>tempTest</div>;
+  return (
+    <div>
+      <div style={{ width: 300, margin: 5 }}>
+        <Card card={card3} showTrash={true} />
+      </div>
+      <div style={{ width: 300, margin: 5 }}>
+        <Card card={card3} showTrash={false} />
+      </div>
+      <div style={{ width: 300, margin: 5 }}>
+        <Card card={card2} showTrash={false} />
+      </div>
+    </div>
+  );
 };
 
 export default TempTest;

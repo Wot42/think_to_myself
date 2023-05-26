@@ -1,0 +1,66 @@
+.card__container--3rows{
+  container-type: size;
+  width: 100%;
+  aspect-ratio: 1/0.54;
+}
+
+.card__container--2rows{
+  container-type: size;
+  width: 100%;
+  aspect-ratio: 1/0.42;
+}
+
+.card__main-style{
+  width: 100%;
+  height: 100%;
+  border-radius: 3cqw;
+  display: flex ;
+  justify-content: center;
+}
+
+.card__inset{
+  width: 96%;
+  height: 100%;
+}
+
+.card__txt-box{
+  height: 6cqw;
+  font-size: 6cqw;
+}
+
+.card__resource-row{
+  display: flex ;
+  width: 96cqw;
+  height: 12cqw;
+  container-type: size;
+}
+
+.card__shadow{
+  background: rgba(0, 0, 0, 0.5) ;
+}
+
+.card__reward{
+  display: flex ;
+  width: 100%;
+  justify-content: flex-start;
+}
+.card__scrap{
+  display: flex ;
+  width: 30%;
+  justify-content: flex-end;
+  font-size: 75cqh;
+  align-items: center;
+}
+
+.card__production{
+  display: flex ;
+  width: 100%;
+}
+
+.card__score{
+  display: flex ;
+  width: 65%;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 75cqh;
+}

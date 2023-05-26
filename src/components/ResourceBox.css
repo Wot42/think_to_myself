@@ -1,0 +1,23 @@
+.resource-box{
+  width: 90cqmin;
+  height: 90cqmin;
+  /* aspect-ratio: 1/1; */
+  margin: 5cqmin;
+  text-align: center;
+  font-size: 75cqmin;
+  border-radius: 25cqmin;
+  box-shadow:  2cqmin 2cqmin 4cqmin black;
+  display: flex ;
+  justify-content: center;
+}
+
+
+/* rem based on browser font size */
+/* re based on parent font size */
+
+/* ch charcater width of 0 */
+/* vw 1% view width*/
+
+/* fr for flex or grid only */
+/* vmax or vmin is 1% of smalles/largest of vw or vh */
+/* contaner quiery cqw needs container-type to be set (inline-size). container-name can give unique stuff */
