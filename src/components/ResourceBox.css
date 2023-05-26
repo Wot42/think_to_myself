@@ -1,11 +1,12 @@
 .resource-box{
-  width: 90cqmin;
-  height: 90cqmin;
+  width: 88cqmin;
+  height: 88cqmin;
   /* aspect-ratio: 1/1; */
   margin: 5cqmin;
   text-align: center;
   font-size: 75cqmin;
   border-radius: 25cqmin;
+  border: 1cqmin solid black;
   box-shadow:  2cqmin 2cqmin 4cqmin black;
   display: flex ;
   justify-content: center;

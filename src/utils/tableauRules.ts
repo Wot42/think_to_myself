@@ -8,6 +8,9 @@ export class TableauRules {
     c: 0,
     d: 0,
     e: 0,
+    x: 0,
+    y: 0,
+    z: 0,
   };
   production = {
     a: 0,
@@ -22,17 +25,15 @@ export class TableauRules {
     c: 0,
     d: 0,
     e: 0,
-  };
-  specialResources = {
-    x: 0,
-    y: 0,
-    z: 0,
+    x: 1,
+    y: 1,
+    z: 1,
   };
 
   completeCard(card: CardRules) {
     this.cards[card.cardType]++;
     card.reward.forEach((value) => {
-      this.specialResources[value]++;
+      this.cards[value]++;
     });
     card.production.forEach((value) => {
       this.production[value]++;
@@ -50,16 +51,33 @@ export class TableauRules {
     const cPoints = this.cards["c"] * this.resourceScore["c"];
     const dPoints = this.cards["d"] * this.resourceScore["d"];
     const ePoints = this.cards["e"] * this.resourceScore["e"];
+    const xPoints = this.cards["x"] * this.resourceScore["x"];
+    const yPoints = this.cards["y"] * this.resourceScore["y"];
+    const zPoints = this.cards["z"] * this.resourceScore["z"];
+
     return [
       aPoints,
       bPoints,
       cPoints,
       dPoints,
       ePoints,
-      this.specialResources["x"],
-      this.specialResources["y"],
-      this.specialResources["z"],
+      xPoints,
+      yPoints,
+      zPoints,
     ];
+  }
+
+  scoreAddition(): number {
+    var add = 0;
+    add += this.cards["a"] * this.resourceScore["a"];
+    add += this.cards["b"] * this.resourceScore["b"];
+    add += this.cards["c"] * this.resourceScore["c"];
+    add += this.cards["d"] * this.resourceScore["d"];
+    add += this.cards["e"] * this.resourceScore["e"];
+    add += this.cards["x"] * this.resourceScore["x"];
+    add += this.cards["y"] * this.resourceScore["y"];
+    add += this.cards["z"] * this.resourceScore["z"];
+    return add;
   }
 
   finalScore(): number {

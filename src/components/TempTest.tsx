@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
-import { CardRules } from "../utils";
+import Tableau from "./Tableau";
+import { CardRules, TableauRules } from "../utils";
 import { CardRulesProps } from "../utils/typesAndInterfaces";
 
 const TempTest = () => {
@@ -11,7 +12,7 @@ const TempTest = () => {
     reward: ["x"],
     production: ["b"],
     points: 1,
-    pointResource: ["b"],
+    pointResource: ["a"],
   };
   var card3 = new CardRules(card3P);
   var card2P: CardRulesProps = {
@@ -25,6 +26,10 @@ const TempTest = () => {
   };
   var card2 = new CardRules(card2P);
 
+  const tableau = new TableauRules();
+  tableau.completeCard(card3);
+  tableau.completeCard(card2);
+
   return (
     <div>
       <div style={{ width: 300, margin: 5 }}>
@@ -35,6 +40,9 @@ const TempTest = () => {
       </div>
       <div style={{ width: 300, margin: 5 }}>
         <Card card={card2} showTrash={false} />
+      </div>
+      <div style={{ width: 700, margin: 0 }}>
+        <Tableau tableau={tableau} />
       </div>
     </div>
   );

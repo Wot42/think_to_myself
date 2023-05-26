@@ -15,7 +15,7 @@ describe("Tableau rules test", () => {
   });
 
   tab2.cards["b"] = 1;
-  tab2.specialResources["x"] = 1;
+  tab2.cards["x"] = 1;
   tab2.production["b"] = 1;
   tab2.resourceScore["b"] = 1;
 

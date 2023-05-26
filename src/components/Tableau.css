@@ -1,0 +1,46 @@
+.tableau{
+  container-type: size;
+  width: 100%;
+  /* aspect-ratio: 1/0.54; */
+}
+
+.tableau__mini-cards--row{
+  display: flex ;
+  align-items:flex-end;
+}
+
+.tableau__mini-cards--section{
+  width:20cqw;
+  display: flex ;
+  flex-wrap: wrap-reverse;
+  align-content: flex-end;
+}
+
+.tableau__mini-card{
+  width: 3.5cqw;
+  height: 2cqw;
+  border: 0.25cqw solid black;
+  border-radius: 1cqw 1cqw 0 0;
+  margin-bottom: -1cqw;
+}
+
+.tableau__row{
+  width: 100cqw;
+  display: flex ;
+  height: 6cqw;
+  container-type: size;
+}
+
+.tableau__section{
+  display: flex ;
+  justify-content: center;
+  width: 100%;
+  font-size: 5cqw ;
+}
+
+.tableau__txt-box{
+  width: 98cqw;
+  height: 3cqw;
+  font-size: 2.75cqw;
+  padding-left: 2cqw;
+}
