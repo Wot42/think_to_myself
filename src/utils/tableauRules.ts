@@ -1,4 +1,5 @@
 import { CardRules } from "./cardRules";
+import { BasicResource } from "./typesAndInterfaces";
 
 export class TableauRules {
   score = 0;
@@ -13,6 +14,13 @@ export class TableauRules {
     z: 0,
   };
   production = {
+    a: 0,
+    b: 0,
+    c: 0,
+    d: 0,
+    e: 0,
+  };
+  productionMultiple = {
     a: 0,
     b: 0,
     c: 0,
@@ -87,5 +95,12 @@ export class TableauRules {
       finalScore += value;
     });
     return finalScore;
+  }
+
+  produce(resource: BasicResource): number {
+    return (
+      this.production[resource] +
+      this.cards[resource] * this.productionMultiple[resource]
+    );
   }
 }

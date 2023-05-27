@@ -13,7 +13,9 @@ const Tableau = ({ tableau }: props) => {
   const productionSection = (res: BasicResource) => {
     return (
       <div className={`tableau__section color__${res}`}>
-        {tableau.production[res]} X <ResourceBox resource={res} />
+        {tableau.production[res]}+{tableau.productionMultiple[res]}x{" "}
+        <ResourceBox resource={res} />
+        {/* {tableau.production[res]} X <ResourceBox resource={res} /> */}
       </div>
     );
   };
@@ -21,7 +23,7 @@ const Tableau = ({ tableau }: props) => {
   const scoreSection = (res: Resource) => {
     return (
       <div className={`tableau__section color__${res}`}>
-        {tableau.cards[res]}X{tableau.resourceScore[res]}VP
+        {tableau.cards[res]}x{tableau.resourceScore[res]}VP
       </div>
     );
   };
