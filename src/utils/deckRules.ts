@@ -42,4 +42,10 @@ export class DeckRules {
       this.clear(index);
     }
   }
+
+  copy(tableau = this.tableau): DeckRules {
+    const copy = new DeckRules(tableau);
+    copy.cards = [...this.cards];
+    return copy;
+  }
 }

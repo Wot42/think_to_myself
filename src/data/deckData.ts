@@ -30,4 +30,20 @@ const testDeck5Data: DeckData[] = [
   },
 ];
 
-export { testDeckData, testDeck5Data };
+const testDeck10Data: DeckData[] = [
+  //temp please delete
+  {
+    amount: 20,
+    card: {
+      cost: ["a", "b"],
+      cardType: "b",
+      trash: "b",
+      reward: ["x"],
+      production: ["b"],
+      points: 1,
+      pointResource: ["b"],
+    },
+  },
+];
+
+export { testDeckData, testDeck5Data, testDeck10Data };

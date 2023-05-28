@@ -1,6 +1,7 @@
 type BasicResource = "a" | "b" | "c" | "d" | "e";
 type SpecialResource = "x" | "y" | "z";
 type Resource = "a" | "b" | "c" | "d" | "e" | "x" | "y" | "z";
+type Hand = "left" | "right";
 
 interface DeckData {
   amount: number;
@@ -17,4 +18,11 @@ interface CardRulesProps {
   pointResource?: BasicResource[];
 }
 
-export { BasicResource, SpecialResource, Resource, DeckData, CardRulesProps };
+export {
+  BasicResource,
+  SpecialResource,
+  Resource,
+  DeckData,
+  CardRulesProps,
+  Hand,
+};

@@ -7,15 +7,16 @@ import "./Card.css";
 interface props {
   card: CardRules;
   showTrash: boolean;
+  id: string;
 }
 
-const Card = ({ card, showTrash }: props) => {
+const Card = ({ card, showTrash, id }: props) => {
   var rowCount = showTrash || card.reward.length > 0 ? 3 : 2;
 
-  const addResourceFromArray = (array: Resource[]) => {
+  const addResourceFromArray = (array: Resource[], idTag: string) => {
     var output: JSX.Element[] = [];
     for (var i = 0; i < array.length; i++) {
-      output.push(<ResourceBox resource={array[i]} />);
+      output.push(<ResourceBox resource={array[i]} key={id + idTag + i} />);
     }
 
     return <React.Fragment>{output}</React.Fragment>;
@@ -36,7 +37,7 @@ const Card = ({ card, showTrash }: props) => {
         <div className="card__txt-box card__shadow">Reward:</div>
         <div className="card__shadow card__resource-row">
           <div className="card__reward">
-            {addResourceFromArray(card.reward)}
+            {addResourceFromArray(card.reward, "reward")}
           </div>
           {trash}
         </div>
@@ -70,13 +71,13 @@ const Card = ({ card, showTrash }: props) => {
         <div className=".card__inset">
           <div className="card__txt-box">Build:</div>
           <div className="card__resource-row">
-            {addResourceFromArray(card.cost)}
+            {addResourceFromArray(card.cost, "cost")}
           </div>
           {rowCount === 3 ? middleRow3() : middleRow2()}
           <div className="card__txt-box">Produce:</div>
           <div className="card__resource-row">
             <div className="card__production">
-              {addResourceFromArray(card.production)}
+              {addResourceFromArray(card.production, "production")}
             </div>
             {showScore()}
           </div>

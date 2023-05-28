@@ -103,4 +103,15 @@ export class TableauRules {
       this.cards[resource] * this.productionMultiple[resource]
     );
   }
+
+  copy() {
+    const copy = new TableauRules();
+    copy.score = this.score;
+    copy.cards = { ...this.cards };
+    copy.production = { ...this.production };
+    copy.productionMultiple = { ...this.productionMultiple };
+    copy.resourceScore = { ...this.resourceScore };
+
+    return copy;
+  }
 }

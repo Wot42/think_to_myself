@@ -14,7 +14,7 @@ const Tableau = ({ tableau }: props) => {
     return (
       <div className={`tableau__section color__${res}`}>
         {tableau.production[res]}+{tableau.productionMultiple[res]}x{" "}
-        <ResourceBox resource={res} />
+        <ResourceBox resource={res} key={"tableau" + res} />
         {/* {tableau.production[res]} X <ResourceBox resource={res} /> */}
       </div>
     );
