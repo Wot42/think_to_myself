@@ -1,36 +1,70 @@
 import React from "react";
-import "./Tableau.css";
+import "./css/Tableau.css";
 import ResourceBox from "./ResourceBox";
-import { Resource } from "../utils/typesAndInterfaces";
+import { Resource, BasicResource } from "../utils/typesAndInterfaces";
 import { TableauRules } from "../utils";
-import { BasicResource } from "../utils/typesAndInterfaces";
 
 interface props {
   tableau: TableauRules;
+  makeActive: (resource: Resource) => void;
+  setTableau: React.Dispatch<React.SetStateAction<TableauRules>>;
 }
 
-const Tableau = ({ tableau }: props) => {
+const Tableau = ({ tableau, makeActive, setTableau }: props) => {
   const productionSection = (res: BasicResource) => {
+    var multiple: JSX.Element[] = [];
+    if (tableau.productionMultiple[res].length > 0) {
+      multiple.push(<React.Fragment>+</React.Fragment>);
+      tableau.productionMultiple[res].forEach((resource, index) => {
+        multiple.push(
+          <ResourceBox
+            resource={resource}
+            key={"tableau" + res + index}
+            id={"tableau" + res + index}
+          />
+        );
+      });
+    }
     return (
-      <div className={`tableau__section color__${res}`}>
-        {tableau.production[res]}+{tableau.productionMultiple[res]}x{" "}
-        <ResourceBox resource={res} key={"tableau" + res} />
-        {/* {tableau.production[res]} X <ResourceBox resource={res} /> */}
+      <div className={`tableau__section color__${res} app__default-cursor`}>
+        {tableau.production[res]}
+        {[...multiple]}
       </div>
     );
   };
 
   const scoreSection = (res: Resource) => {
     return (
-      <div className={`tableau__section color__${res}`}>
+      <div
+        className={`tableau__section color__${res} ${
+          res === "x" || res === "y" || res === "z"
+            ? "app__hover"
+            : "app__default-cursor"
+        }`}
+        onClick={() => {
+          activateResource(res);
+        }}
+      >
         {tableau.cards[res]}x{tableau.resourceScore[res]}VP
       </div>
     );
   };
 
+  const activateResource = (resource: Resource) => {
+    if (
+      tableau.cards[resource] > 0 &&
+      (resource === "x" || resource === "y" || resource === "z")
+    ) {
+      makeActive(resource);
+      const tab = tableau.copy();
+      tab.cards[resource]--;
+      setTableau(tab);
+    }
+  };
+
   const scoreTotal = () => {
     return (
-      <div className="tableau__section color__points">
+      <div className="tableau__section color__points app__default-cursor">
         {tableau.score} + {tableau.scoreAddition()}
       </div>
     );
@@ -60,7 +94,9 @@ const Tableau = ({ tableau }: props) => {
         {productionSection("d")}
         {productionSection("e")}
       </div>
-      <div className="tableau__txt-box color__points">score multipliers:</div>
+      <div className="tableau__txt-box color__points app__default-cursor">
+        score multipliers:
+      </div>
 
       <div className="tableau__row">
         {scoreSection("a")}

@@ -1,0 +1,71 @@
+.hands-display__container{
+  width: 100%;
+  /* use different height */
+  height: 100%;
+  overflow: scroll;
+  container-type: size;
+}
+
+.hands-display__column-flex{
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hands-display__cards{
+  width: 46cqw;
+  margin: 2cqw;
+}
+
+.hands-display__hand-selector{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 1.5cqw;
+
+}
+
+.hands-display__hand-selector--button{
+  font-size: 3cqw;
+  padding: 1cqw;
+}
+
+.hands-display__tt-box--build-button{
+  width: 27cqw;
+  height: 20cqw;
+  font-size: 6cqw;
+}
+
+.hands-display__tt-box--trash-button{
+  width: 54cqi;
+  font-size: 6cqw;
+  height: 20cqw;
+}
+
+.hands-display__tt-box{
+  width: 100%;
+  aspect-ratio: 1/0.42;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  container-type: size;
+
+}
+
+.hands-display__main-row{
+  display: flex;
+}
+
+/* when text skips to 2 lines     307/307.5 */
+
+@container (min-width: 307px){
+  .hands-display__tt-box--build-button{
+    height: 10cqw;
+  }
+
+  .hands-display__tt-box--trash-button{
+    height: 10cqw;
+  }
+
+}

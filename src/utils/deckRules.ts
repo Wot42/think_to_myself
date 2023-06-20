@@ -11,6 +11,7 @@ export class DeckRules {
   }
 
   fillFrom(data: DeckData[]): void {
+    // TODO linking?
     for (let i = 0; i < data.length; i++) {
       for (let a = 0; a < data[i].amount; a++) {
         this.cards.push(new CardRules(data[i].card));

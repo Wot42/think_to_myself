@@ -1,0 +1,55 @@
+.app__main-container{
+  aspect-ratio: 3/2;
+  height : 100vh;
+  container-type: size;
+  background: rgb(85, 85, 85);
+}
+
+.app__mid-container{
+  display: flex;
+  padding-top: 12.8cqw;
+  height: calc(100cqh - 33.8cqw);
+}
+
+@media(max-aspect-ratio: 3/2){
+  .app__main-container{
+    width : 100vw;
+  }
+}
+
+@media(max-aspect-ratio: 0.9/1){
+  .app__hide--slim{
+    display: none;
+  }
+
+}
+@media(min-aspect-ratio: 0.9/1){
+  .app__show--slim{
+    display: none !important ;
+  }
+
+  .app__mid-container{
+    padding-top: 5.4cqw;
+
+    height: calc(100cqh - 16.4cqw);
+  }
+
+}
+
+body{
+  display:flex;
+  justify-content: center;
+  background: black;
+}
+
+.app__hide{
+  display: none !important ;
+}
+
+.app__hover:hover{
+  cursor: pointer;
+}
+
+.app__default-cursor:hover{
+  cursor:default;
+}

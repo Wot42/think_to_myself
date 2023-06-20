@@ -1,0 +1,46 @@
+.rules-display__container{
+  width: 100%;
+  /* use different height */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.rules-display__main{
+  width: 90%;
+  /* use different height */
+  height: 95%;
+  overflow: scroll;
+  container-type: inline-size;
+}
+.rules-display__main h1{
+  padding-left: 2cqw;
+}
+.rules-display__main h3{
+  padding-left: 3cqw;
+}
+.rules-display__main p{
+  padding-left: 6cqw;
+  padding-right: 3cqw;
+}
+
+.rules-display__close-button{
+  aspect-ratio: 1/1;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.rules-display__card{
+  width: 94cqw;
+  margin: 3cqw;
+}
+
+@media(min-aspect-ratio: 0.9/1){
+  .rules-display__main{
+    width: 50%;
+  }
+
+}

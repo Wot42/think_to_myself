@@ -16,14 +16,17 @@ describe("Deck rules test", () => {
     pointResource: ["b"],
   };
 
+  const deck1 = new DeckRules(tableau);
+  deck1.cards.push(new CardRules(card1));
+  const deckFill = new DeckRules(tableau);
+  deckFill.fillFrom(testDeckData);
   it("fill from works", () => {
-    const deck1 = new DeckRules(tableau);
-    deck1.cards.push(new CardRules(card1));
-    const deckFill = new DeckRules(tableau);
-    deckFill.fillFrom(testDeckData);
-
     expect(deckFill).toEqual(deck1);
   });
+
+  const deck2 = deck1.copy();
+  it("copped card is different object", () => expect(deck2).not.toBe(deck1));
+  it("copped card has same content", () => expect(deck2).toEqual(deck1));
 
   // const deck3 = new DeckRules(tableau);
   // deck3.cards.push(new CardRules(card1));

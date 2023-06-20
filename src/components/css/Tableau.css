@@ -1,7 +1,12 @@
 .tableau{
-  container-type: size;
-  width: 100%;
-  /* aspect-ratio: 1/0.54; */
+  container-type: inline-size;
+  width: 100cqw;
+
+  position: fixed;
+  bottom: 0;
+
+  /* position: absolute;
+  bottom: 0; */
 }
 
 .tableau__mini-cards--row{
@@ -34,13 +39,33 @@
 .tableau__section{
   display: flex ;
   justify-content: center;
+  align-items:center;
   width: 100%;
   font-size: 5cqw ;
+  height: 100%;
 }
 
 .tableau__txt-box{
+  display: flex ;
+  align-items:center;
   width: 98cqw;
   height: 3cqw;
   font-size: 2.75cqw;
   padding-left: 2cqw;
+}
+
+@media(min-aspect-ratio: 0.9/1){
+  .tableau__mini-card{
+
+  }
+  .tableau__row{
+    height:3cqw;
+  }
+  .tableau__section{
+    font-size: 2.5cqw ;
+  }
+  .tableau__txt-box{
+    height: 2cqw;
+    font-size: 1.8cqw;
+  }
 }

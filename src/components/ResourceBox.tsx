@@ -1,16 +1,17 @@
 import React from "react";
 import { Resource } from "../utils/typesAndInterfaces";
-import "./ResourceBox.css";
+import "./css/ResourceBox.css";
 
 interface props {
   resource: Resource;
+  id: string;
 }
 
-const ResourceBox = ({ resource }: props) => {
+const ResourceBox = ({ resource, id }: props) => {
   // must be in a div with "container-type: size" to work
   return (
-    <div className="container">
-      <div className={`color__${resource} resource-box`}>
+    <div className="container app__default-cursor">
+      <div className={`color__${resource} resource-box ${id}`}>
         {resource.toUpperCase()}
       </div>
     </div>

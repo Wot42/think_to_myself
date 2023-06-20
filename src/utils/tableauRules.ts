@@ -14,18 +14,18 @@ export class TableauRules {
     z: 0,
   };
   production = {
-    a: 0,
-    b: 0,
-    c: 0,
+    a: 2,
+    b: 1,
+    c: 1,
     d: 0,
     e: 0,
   };
   productionMultiple = {
-    a: 0,
-    b: 0,
-    c: 0,
-    d: 0,
-    e: 0,
+    a: [] as BasicResource[],
+    b: [] as BasicResource[],
+    c: [] as BasicResource[],
+    d: [] as BasicResource[],
+    e: [] as BasicResource[],
   };
   resourceScore = {
     a: 0,
@@ -35,7 +35,7 @@ export class TableauRules {
     e: 0,
     x: 1,
     y: 1,
-    z: 1,
+    z: 0,
   };
 
   completeCard(card: CardRules) {
@@ -43,9 +43,17 @@ export class TableauRules {
     card.reward.forEach((value) => {
       this.cards[value]++;
     });
-    card.production.forEach((value) => {
-      this.production[value]++;
-    });
+
+    if (card.productionLinkedResource.length > 0) {
+      this.productionMultiple[card.production[0]].push(
+        card.productionLinkedResource[0]
+      );
+    } else {
+      card.production.forEach((value) => {
+        this.production[value]++;
+      });
+    }
+
     if (card.pointResource.length > 0) {
       this.resourceScore[card.pointResource[0]] += card.points;
     } else {
@@ -98,10 +106,12 @@ export class TableauRules {
   }
 
   produce(resource: BasicResource): number {
-    return (
-      this.production[resource] +
-      this.cards[resource] * this.productionMultiple[resource]
-    );
+    var amount = 0;
+    this.productionMultiple[resource].forEach((multipliedResource) => {
+      amount += this.cards[multipliedResource];
+    });
+    amount += this.production[resource];
+    return amount;
   }
 
   copy() {

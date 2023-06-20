@@ -9,7 +9,8 @@ describe("card rules test", () => {
       cardType: "a",
       trash: "a",
       reward: [],
-      production: ["a"],
+      production: [],
+      productionLinkedResource: [],
       points: 0,
       pointResource: [],
     });

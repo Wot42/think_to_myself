@@ -1,11 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { DeckData, Hand, Resource } from "../utils/typesAndInterfaces";
 import { DeckRules, TableauRules } from "../utils";
+import { Card } from "../components";
 
 const useDecks = (
   startData: DeckData[],
   tableau: TableauRules,
-  setTableau: React.Dispatch<React.SetStateAction<TableauRules>>
+  setTableau: React.Dispatch<React.SetStateAction<TableauRules>>,
+  activeResource: Resource[],
+  takeActive: () => Resource
 ) => {
   var starerDeck = new DeckRules(tableau);
   starerDeck.fillFrom(startData);
@@ -48,6 +51,7 @@ const useDecks = (
     const build = buildDeck.copy(tab);
 
     build.giveCardResource(index, resource);
+    takeActive();
 
     setTableau(tab);
     build.tableau = tableau;
@@ -72,6 +76,33 @@ const useDecks = (
     return resource;
   };
 
+  const showCards = (
+    deck: DeckRules,
+    trash: boolean,
+    id: string,
+    classToAdd: string
+  ) => {
+    var output: JSX.Element[] = [];
+
+    deck.cards.forEach((card, index) => {
+      output.push(
+        <div className={classToAdd}>
+          <Card
+            card={card}
+            showTrash={trash}
+            key={id + index}
+            id={id + index}
+            index={index}
+            activeResource={activeResource}
+            giveResource={giveResource}
+          />
+        </div>
+      );
+    });
+
+    return <React.Fragment>{output}</React.Fragment>;
+  };
+
   return {
     buildDeck,
     leftHandDeck,
@@ -81,6 +112,7 @@ const useDecks = (
     moveToBuildDeck,
     giveResource,
     trash,
+    showCards,
   };
 };
 

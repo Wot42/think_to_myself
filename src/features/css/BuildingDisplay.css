@@ -1,0 +1,19 @@
+.building-display__container{
+  width: 100%;
+  /* use different height */
+  height: 100%;
+  overflow: scroll;
+  container-type: size;
+}
+
+.building-display__main-flex{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+
+
+.building-display__cards{
+  width: 46cqw;
+  margin: 2cqw;
+}

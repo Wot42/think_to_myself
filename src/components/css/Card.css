@@ -55,6 +55,7 @@
 .card__production{
   display: flex ;
   width: 100%;
+  font-size: 75cqh;
 }
 
 .card__score{
